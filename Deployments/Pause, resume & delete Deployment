@@ -1,0 +1,14 @@
+# Pause a Deployment
+
+kubectl rollout pause deployment/nginx-deployment
+
+kubectl set image deploy/nginx-deployment nginx-container=nginx:1.9.1
+(Imperative way)
+
+# Resume Deployment
+kubectl rollout resume deployment/nginx-deployment
+
+kubectl describe deployment nginx-deployment
+
+# Delete Deployment
+kubectl delete deploy <DEPLOYMENT NAME>

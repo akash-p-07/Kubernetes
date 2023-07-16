@@ -1,0 +1,48 @@
+# Create new disk at Gclooud
+gcloud compute disks create --size=10GB --zone=us-central1-a my-own-disk
+
+# Ensure that Disk has created or not
+
+# mGo to Disk section where you can get the details
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gec-pd
+spec:
+  containers:
+  - name: test-container
+    image: nginx
+    volumeMounts:
+    - mountPath: /test-pd
+      name: test-volume
+  volumes:
+  - name: test-volume
+    gcePersistentDisk:
+      pdName: my-own-disk
+      fsType: ext4
+_______________________________________________________________________________________________________________________	  
+
+# Get into Pod (Spinning Down) and go to test-pd directory
+
+# Create new file at test-pd directory
+
+# Name of file is file1.txt
+
+echo 'Hello' > file1.txt
+
+# Spinning up 
+
+# Delete the pod
+
+# Get into pod again and go to test-pd directory
+
+# Ensure that file1.txt exists or not
+
+_______________________________________________________________________________________________________________________	  
+
+# Go to node and ensure that file1.txt created or not
+
+# Apply below
+
+find / -name file1.txt

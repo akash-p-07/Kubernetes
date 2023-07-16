@@ -1,0 +1,89 @@
+kubectl get node
+kubectl get node -o wide
+
+# Ensure that do you have any pod or not
+kubectl get pod
+
+# Create a file for Pod definition
+# Using editor either vi or nano
+vi <filename.yaml or filename.yml>
+nano <filename.yaml or filename.yml>
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:1.7.9
+________________________________________________________________________________
+
+# Apply 
+kubectl get pod
+kubectl get pod -o wide
+Run the Pod definition file
+kubectl apply -f <FILENAME.YML>
+kubectl get pod
+kubectl get pod -o wide
+kubectl describe pod <Pod Name>
+kubectl describe -f <FILENAME.YML>
+# How to get into Pod
+kubectl exec -it <POD NAME> bash
+kubectl delete pod <Pod Name>
+________________________________________________________________________________
+# Pratice for Multiple Container
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+  labels:
+    app: nginx
+    tier: dev
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+  - name: redis-container
+    image: redis  
+________________________________________________________________________________
+# Create Name Space
+
+kubectl create ns <Name Space>
+
+Example: kubectl create ns test
+
+kubectl get ns
+
+# Create a Pod in a given Namespace
+
+kubectl apply -f <Yaml File> --namespace <Name Space>
+
+Example: kubectl apply -f podlab.yaml --namespace test
+
+# List the Pods
+
+kubectl get pod
+
+# List the Pods with additional detail
+
+kubectl get pod -o wide
+
+# List the Pods in a given namespace
+
+kubectl get pod -n <name space>
+kubectl get pod -n test
+
+# Describe the Pod
+
+kubectl describe pod mypod -n <NAME SPACE>
+
+# Deleting Pod
+
+kubectl delete pod <POD NAME> -n <NAME SPACE>
+Example: kubectl delete pod mypod -n test
+
+# Deleting Namespace
+
+kubectl delete ns <NAME SPACE>

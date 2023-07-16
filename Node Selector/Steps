@@ -1,0 +1,39 @@
+# Create a pod using the Node selector
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-demo
+  labels:
+    env: test
+spec:
+  containers:
+  - name: pod-node
+    image: nginx:1.9.1
+  nodeSelector:
+    disktype: ssd
+
+# Run it
+kubectl apply -f <FILE NAME>. yml or yaml
+
+# Check the status of the recently deployed pod
+kubectl get pod
+kubectl describe pod <POD NAME>
+
+# Let's check the labels of the nodes
+kubectl get nodes --show-labels
+
+# Now we can attach the label to the present node as per your system using the following command
+
+# List out all nodes
+kubectl get node
+
+kubectl label nodes <NODE NAME> disktype=ssd
+
+# Example: kubectl label nodes gke-cluster-1-default-pool-4a9cb74c-plmx disktype=ssd
+
+# Check the status of the pod now
+kubectl get po
+ 
+# Delete the Pod
+kubectl delete pod pod-demo

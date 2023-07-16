@@ -1,0 +1,71 @@
+#Create new file name with firstlab.yml and copy below Kubernetes definition files
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx-keyword
+  template:
+    metadata:
+      labels:
+        app: nginx-keyword
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.7.9
+___________________________________________________________________________________
+
+kubectl apply -f firstlab.yml
+kubectl get deploy
+
+kubectl get deploy -o wide
+
+kubectl get pod
+
+kubectl get pod -o wide
+#Know the ip address of the POD and which node this POD is running
+
+Get into Pod
+
+kubectl exec -it <POD NAME> /bin/sh # Getting into running container
+or
+kubectl exec -it <POD NAME> bash
+
+You can get into inside the POD
+
+Apply below commands
+
+ping < POD Pvt address>
+
+hostname
+output is
+nginx-deployment
+
+********************************************
+# Pod communucation with each other
+
+First get into 	1st Pod
+hostname -i
+(You get pvt ip address of Pod)
+Exit from the pod
+
+Get into 2nd Pod
+Apply below
+hostname -i
+(You get pvt ip address of Pod)
+ping <FIRST POD IP ADDRESS>
+
+Ensure, pod communucate among the pod or not
+
+how to come out from pod, apply below
+exit
+********************************************
+
+kubectl get rs
+rs meanes Replica Sets
+
+kubectl describe deploy <DEPLOYMENT NAME>

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginx
+  labels:
+    run: my-nginx
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: my-nginx
+
+
+kubectl apply -f <file name>
+
+kubectl get pods -o wide
+kubectl get svc my-nginx
+kubectl describe svc my-nginx
+
+# Ensure that Cluster Ip address working or not
+
+kubectl exec <pOD NAME> -- curl -s http://<CLUSTER IP>
+
+kubectl exec my-nginx-5b56ccd65f-h4z5z -- curl -s http:// 10.76.8.32
+

@@ -1,0 +1,17 @@
+# Scale up (Scaling)
+
+kubectl get deploy
+
+# Auto Scale
+HPA : Horizontal Pod Auto scaling
+VPA: Vertical Pod Auto Scaling
+
+kubectl autoscale deploy nginx-deployment --min=5 --max=9 --cpu-percent=80
+
+kubectl get pods
+
+kubectl get hpa
+
+kubectl describe hpa nginx-deployment
+
+kubectl delete hpa nginx-deployment

@@ -1,0 +1,19 @@
+#Upgrade Deployment
+
+Open Kubernetes definition file
+
+Replace nginx verson 1.7.9 with 1.9.1
+
+kubectl apply -f firstlab.yml
+
+kubectl get rs -w
+# (-w : watch)
+
+# (rs indicate replica set and w indicate watch)
+
+kubectl get rs
+# (All POD's running under Replica Set)
+
+kubectl get deploy
+
+kubectl describe deploy nginx-deployment 

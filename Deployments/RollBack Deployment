@@ -1,0 +1,20 @@
+#Rollback Deployment
+
+kubectl rollout status deploy/nginx-deployment 
+# (Be ready : nginx-deployment Rolling back)
+
+kubectl get deploy
+
+kubectl rollout history deploy/nginx-deployment
+
+# [ You can get list of revision]
+ 
+kubectl rollout undo deploy/nginx-deployment
+
+1.9.1 replace with 1.7.9
+
+kubectl describe deploy nginx-deployment
+
+Checking K8S Pods CPU and Memory
+
+kubectl top pod <POD NAME> --namespace=default
